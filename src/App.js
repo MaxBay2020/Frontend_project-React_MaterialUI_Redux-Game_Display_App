@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./layout/Layout";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from 'react-router-dom'
+import Products from "./pages/products/Products";
+import Login from "./pages/login/Login";
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import {useSelector} from 'react-redux'
+import Single from "./pages/single/Single";
 
-function App() {
+
+
+
+const App = () => {
+    const darkMode = useSelector(state => state.darkMode.value.darkMode)
+
+    const darkTheme = createTheme({
+        palette: {
+            mode: darkMode ? 'dark' : 'light',
+        },
+    })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={darkTheme}>
+          <Router>
+              <Layout darkMode={darkMode}>
+                  <Routes>
+                      <Route path='/' element={<Products />} />
+                      <Route path='/products'>
+                          <Route index element={<Products />} />
+                          <Route path=':productId' element={<Single />} />
+                      </Route>
+                      <Route path='/login' element={<Login />} />
+                  </Routes>
+              </Layout>
+          </Router>
+      </ThemeProvider>
+
   );
 }
 

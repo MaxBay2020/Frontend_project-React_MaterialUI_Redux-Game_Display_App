@@ -1,0 +1,6 @@
+@import './src/style/layout';
+@import './src/style/variants';
+
+.products-container{
+  padding-top: calc($navbar-height + 30px);
+}

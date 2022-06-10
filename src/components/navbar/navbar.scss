@@ -1,0 +1,143 @@
+@import './src/style/layout';
+@import './src/style/variants';
+
+.navbar{
+  background-color: #ffffff;
+  height: $navbar-height;
+  padding-left: 4rem;
+
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @include flexBox(row);
+  -webkit-box-shadow: 0px 13px 31px 0px rgba(213, 213, 213, 0.4);
+  box-shadow: 0px 13px 31px 0px rgba(213, 213, 213, 0.4);
+
+  .logo{
+    height: 100%;
+    @include flexBox(row);
+    gap: 10px;
+
+    .title{
+      font-size: 28px;
+      font-weight: 500;
+      //align-self: flex-end;
+      color: #3e3e3e;
+    }
+
+    img{
+      width: 14rem;
+      object-fit: cover;
+    }
+
+  }
+
+  .menubar{
+    height: 100%;
+    list-style: none;
+    @include flexBox(row);
+    //gap: 15px;
+
+    a{
+      height: 100%;
+
+      li{
+        height: 100%;
+        @include flexBox(row);
+        font-size: 18px;
+        padding: 8px;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s ease-out;
+
+
+        &:hover{
+          border-bottom: 2px solid #011332;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .darkModeSwitcher{
+      padding-left: 20px;
+      @include flexBox(row);
+
+      span{
+        font-size: 14px;
+      }
+    }
+  }
+
+  .line-container{
+    height: 100%;
+    width: 6rem;
+    //background: #2a67bf;
+    @include flexBox(column);
+    justify-content: space-around;
+    padding: 12px 2px;
+    display: none;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    .line{
+      height: 2px;
+      width: 60%;
+      background: #333;
+      transition: all 0.3s ease-out;
+      transform-origin: top left;
+    }
+
+    &.toggleMenu {
+      .line-1{
+        transform: rotate(45deg);
+      }
+
+      .line-2{
+        opacity: 0;
+      }
+
+      .line-3{
+        transform: rotate(-45deg);
+      }
+    }
+
+  }
+
+
+}
+
+.small-screen-menu{
+  position: absolute;
+  background: rgba(227, 227, 227, 0.27);
+  border-left: 1px solid #bababa;
+  border-bottom: 1px solid #bababa;
+
+  top: $navbar-height;
+  z-index: 999;
+  right: -300px;
+  transition: all 0.3s ease-in-out;
+
+  .menubar{
+    a{
+      width: 100%;
+    }
+
+    a:nth-child(2){
+      border-bottom: 1px solid #a5a5a5;
+    }
+    li.darkModeSwitcher{
+      padding: 8px;
+    }
+  }
+
+}
+
+
+.active{
+  background: #2a67bf;
+  color: #fff;
+  border-bottom: 2px solid #011332;
+}

@@ -1,0 +1,10 @@
+@import './src/style/layout';
+@import './src/style/variants';
+
+.login{
+  padding-top: calc($navbar-height + 30px);
+  font-size: 36px;
+  text-align: center;
+
+  @include flexBox(row);
+}
